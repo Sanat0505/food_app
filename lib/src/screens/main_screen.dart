@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/src/pages/favourite_page.dart';
+import 'package:food_app/src/pages/profile_page.dart';
 //pages
 import '../pages/home_page.dart';
 import '../pages/order_page.dart';
@@ -16,6 +18,8 @@ class _MainScreenState extends State<MainScreen> {
 
   late HomePage homePage;
   late OrderPage orderPage;
+  late FavouritePage favouritePage;
+  late ProfilePage profilePage;
 
   @override
   void initState() {
@@ -23,7 +27,9 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     homePage = HomePage();
     orderPage = OrderPage();
-    pages = [homePage, orderPage];
+    favouritePage = FavouritePage();
+    profilePage = ProfilePage();
+    pages = [homePage, orderPage, favouritePage, profilePage];
 
     currentPage = homePage;
   }
