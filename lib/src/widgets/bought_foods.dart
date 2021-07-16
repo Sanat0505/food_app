@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
 class BoughtFoods extends StatefulWidget{
+  final String id;
+  final String name;
+  final String imagePath;
+  final String catagory;
+  final double price;
+  final double discount;
+  final double rating;
+  BoughtFoods({required this.id, required this.name, required this.imagePath, required this.catagory, required this.price, required this.discount, required this.rating});
+
   _BoughtFoodsState createState() => _BoughtFoodsState();
 }
 class _BoughtFoodsState extends State<BoughtFoods>{
@@ -13,7 +22,7 @@ class _BoughtFoodsState extends State<BoughtFoods>{
           Container(
             // height: 200.0,
             // width: 350.0,
-            child:  Image.asset("assets/images/breakfast.png"),
+            child:  Image.asset(widget.imagePath,fit: BoxFit.cover,),
           ),
           Positioned(
             left: 0.0,
@@ -43,7 +52,7 @@ class _BoughtFoodsState extends State<BoughtFoods>{
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget> [
                     Text(
-                      "Hot Cofee with Samosa",
+                      widget.name,
                       style: TextStyle(
                         color:  Colors.white,
                         fontFamily: 'SecularOne',
@@ -60,7 +69,7 @@ class _BoughtFoodsState extends State<BoughtFoods>{
                         Icon(Icons.star,color: Theme.of(context).primaryColor,size: 16.0,),
                         SizedBox(width: 20.0,),
                         Text(
-                          "(25.0 Reviews)",
+                          "(" + widget.rating.toString() + "Reviews)",
                           style: TextStyle(
                             color:  Colors.grey,
                             fontWeight: FontWeight.normal,
@@ -76,7 +85,7 @@ class _BoughtFoodsState extends State<BoughtFoods>{
                 Column(
                   children:<Widget> [
                     Text(
-                      "22.0",
+                      widget.price.toString(),
                       style:  TextStyle(
                         color: Colors.orangeAccent,
                         fontFamily: 'SecularOne',

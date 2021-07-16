@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/src/widgets/home_top_info.dart';
-import 'widgets/food_category.dart';
-import 'widgets/search_field.dart';
-import 'widgets/bought_foods.dart';
+import '../widgets/food_category.dart';
+import '../widgets/search_field.dart';
+import '../widgets/bought_foods.dart';
 
 //Data
-import 'data/food_data.dart';
-class HomeScreen extends StatefulWidget{
+import '../data/food_data.dart';
+class HomePage extends StatefulWidget{
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen>{
+class _HomePageState extends State<HomePage>{
 
   List<Food> _foods = foods;
 
@@ -31,24 +31,24 @@ class _HomeScreenState extends State<HomeScreen>{
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children:<Widget> [
               Text(
-                  "Frequently Bought Foods",
-                  style: TextStyle(
-                    fontFamily: 'SecularOne',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                  ),
+                "Frequently Bought Foods",
+                style: TextStyle(
+                  fontFamily: 'SecularOne',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
               ),
               GestureDetector(
                 onTap: (){},
                 child : Text(
                   "View All",
                   style: TextStyle(
-                  fontFamily: 'SecularOne',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                  color: Colors.amber
+                      fontFamily: 'SecularOne',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                      color: Colors.amber
+                  ),
                 ),
-              ),
               ),
             ],
           ),
