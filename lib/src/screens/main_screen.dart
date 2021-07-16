@@ -48,19 +48,19 @@ class _MainScreenState extends State<MainScreen> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              title: Text("Home"),
+              title: Text("Home",style: TextStyle(fontFamily: "SecularOne"),),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            title: Text("Orders"),
+            title: Text("Orders",style: TextStyle(fontFamily: "SecularOne"),),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            title: Text("Favourite"),
+            title: Text("Favourite",style: TextStyle(fontFamily: "SecularOne"),),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: Text("Profile"),
+            title: Text("Profile",style: TextStyle(fontFamily: "SecularOne"),),
           ),
         ],
       ),

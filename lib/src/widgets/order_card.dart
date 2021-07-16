@@ -55,7 +55,7 @@ class OrderCard extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                      "assets/images/pizza.png",
+                      "assets/images/grilledchicken.jpg",
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -78,14 +78,16 @@ class OrderCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
+                    fontFamily: "SecularOne",
                   ),
                 ),
                 SizedBox(height: 5.0,),
                 Text(
-                    "3.0",
+                    " \u20B9 330.0",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.orangeAccent,
+                    fontFamily: "SecularOne",
                   ),
                 ),
                 SizedBox(height: 5.0,),
@@ -99,31 +101,17 @@ class OrderCard extends StatelessWidget {
                         margin: EdgeInsets.only(right: 10.0),
                         child: Row(
                           children: <Widget>[
-                            Text("Chicken", style: TextStyle(color: Colors.grey,),),
+                            Text("Chicken", style: TextStyle(color: Colors.grey,fontFamily: "SecularOne",),),
                             SizedBox(width: 5.0,),
-                            Text("x", style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold,),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 10.0),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Chicken", style: TextStyle(color: Colors.grey,),),
-                            SizedBox(width: 5.0,),
-                            Text("x", style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold,),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 10.0),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Chicken", style: TextStyle(color: Colors.grey,),),
-                            SizedBox(width: 5.0,),
-                            Text("x", style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold,),
+                            InkWell(
+                              onTap: (){},
+                              child: Text("x",
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "SecularOne",
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -132,6 +120,11 @@ class OrderCard extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            Spacer(),
+            GestureDetector(
+                onTap: (){},
+                child: Icon(Icons.cancel,color: Colors.grey,)
             ),
           ],
         ),
