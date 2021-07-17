@@ -9,7 +9,7 @@ class _FavouritePageState extends State<FavouritePage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("Favourite Page"),
+      child: Text("Explore Page"),
     );
   }
 }
