@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/src/models/food_model.dart';
 import 'package:food_app/src/scoped-model/food_model.dart';
 import 'package:food_app/src/scoped-model/main_model.dart';
 import 'package:food_app/src/widgets/home_top_info.dart';
@@ -80,10 +81,10 @@ class _HomePageState extends State<HomePage>{
         id: food.id,
         name: food.name,
         imagePath: food.imagePath,
-        catagory: food.catagory,
+        catagory: food.category,
         discount: food.discount,
         price: food.price,
-        rating: food.rating,
+        rating: food.ratings,
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:food_app/src/models/food_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:food_app/src/data/food_data.dart';
 import 'package:http/http.dart' as http;
@@ -24,12 +25,13 @@ class FoodModel extends Model{
       fetchedData.forEach((data) {
         Food food = Food(
           id: data["id"],
-          catagory: data["catagory_id"],
+          category: data["catagory_id"],
+          description: 'description',
           discount: double.parse(data["discount"]),
           imagePath: data["image_path"],
           name: data["title"],
           price: double.parse(data["price"]),
-          rating: 2.0,
+          ratings: 2.0,
         );
 
         fetchedFoodItems.add(food);
