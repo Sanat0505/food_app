@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/src/admin/pages/add_food_item.dart';
 import 'package:food_app/src/pages/favourite_page.dart';
 import 'package:food_app/src/pages/profile_page.dart';
 import 'package:food_app/src/scoped-model/food_model.dart';
@@ -44,36 +45,62 @@ class _MainScreenState extends State<MainScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (int index){
-          setState(() {
-            currentTabIndex = index;
-            currentPage = pages[index];
-          });
-        },
-        currentIndex: currentTabIndex,
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text("Home",style: TextStyle(fontFamily: "SecularOne"),),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          iconTheme: IconThemeData(color: Colors.black),
+        ),
+        drawer: Drawer(
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                onTap: (){
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context)=>AddFoodItem())
+                  );
+                },
+                leading: Icon(Icons.list),
+                title: Text("Add Food Item",
+                style: TextStyle(
+                  fontSize: 16.0,
+                ),),
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
-            title: Text("Explore",style: TextStyle(fontFamily: "SecularOne"),),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            title: Text("Orders",style: TextStyle(fontFamily: "SecularOne"),),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text("Profile",style: TextStyle(fontFamily: "SecularOne"),),
-          ),
-        ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (int index){
+            setState(() {
+              currentTabIndex = index;
+              currentPage = pages[index];
+            });
+          },
+          currentIndex: currentTabIndex,
+          type: BottomNavigationBarType.fixed,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                title: Text("Home",style: TextStyle(fontFamily: "SecularOne"),),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.explore),
+              title: Text("Explore",style: TextStyle(fontFamily: "SecularOne"),),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart),
+              title: Text("Orders",style: TextStyle(fontFamily: "SecularOne"),),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              title: Text("Profile",style: TextStyle(fontFamily: "SecularOne"),),
+            ),
+          ],
+        ),
+        body: currentPage,
       ),
-      body: currentPage,
     );
   }
 }

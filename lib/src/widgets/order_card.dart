@@ -15,7 +15,7 @@ class OrderCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              height: 75.0,
+              height: 80.0,
               width: 45.0,
               decoration: BoxDecoration(
                 border: Border.all(width: 2.0,color: Colors.grey),
