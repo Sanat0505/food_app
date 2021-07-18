@@ -18,7 +18,7 @@ class HomeTopInfo extends StatelessWidget{
               Text("you like to eat ?",style: textStyle,),
             ],
           ),
-          Icon(Icons.notifications_none,size: 40.0,color: Theme.of(context).primaryColor,),
+
         ],
       ),
     );

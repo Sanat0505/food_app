@@ -48,9 +48,10 @@ class FoodModel extends Model{
       _foods.add(foodWithId);
       print(_foods);
 
+      _foods.add(foodWithId);
       _isLoading = false;
       notifyListeners();
-      fetchFood();
+      // fetchFood();
       return Future.value(true);
     }catch(e){
       _isLoading = false;
@@ -60,27 +61,38 @@ class FoodModel extends Model{
     }
   }
 
-  void fetchFood(){
-    http.get(Uri.parse("https://food-app-878bb-default-rtdb.firebaseio.com/foods.json")).then((http.Response response){
-      //print("Featching Data: ${response.body}");
-      final Map<String, dynamic> fetchedData = jsonDecode(response.body);
-      print(fetchedData);
-      final List<Food> foodItems = [];
-      fetchedData.forEach((String id, dynamic foodData) {
-        Food foodItem = Food(
-          id: id,
-          name: foodData["title"],
-          description: foodData["description"],
-          category: foodData["category"],
-          price: double.parse(foodData["price"].toString()),
-          discount: double.parse(foodData["discount"].toString()),
-          ratings: 89.0,
-          imagePath: "assets/images/breakfast.png",
-        );
-        foodItems.add(foodItem);
-      });
-      _foods = foodItems;
-      notifyListeners();
-  });
+  Future<bool> fetchFood() async {
+    _isLoading = true;
+    notifyListeners();
+   try{
+     final http.Response response = await http.get(Uri.parse("https://food-app-878bb-default-rtdb.firebaseio.com/foods.json"));
+
+     //print("Featching Data: ${response.body}");
+     final Map<String, dynamic> fetchedData = jsonDecode(response.body);
+     print(fetchedData);
+     final List<Food> foodItems = [];
+     fetchedData.forEach((String id, dynamic foodData) {
+       Food foodItem = Food(
+         id: id,
+         name: foodData["title"],
+         description: foodData["description"],
+         category: foodData["category"],
+         price: double.parse(foodData["price"].toString()),
+         discount: double.parse(foodData["discount"].toString()),
+         ratings: 89.0,
+         imagePath: "assets/images/breakfast.png",
+       );
+       foodItems.add(foodItem);
+     });
+     _foods = foodItems;
+     _isLoading = false;
+     notifyListeners();
+     return Future.value(true);
+   }
+   catch(error){
+     _isLoading = false;
+     notifyListeners();
+     return Future.value(false);
+   }
 }
 }

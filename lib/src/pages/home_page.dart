@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/src/models/food_model.dart';
+import 'package:food_app/src/pages/food_details_page.dart';
 import 'package:food_app/src/scoped-model/food_model.dart';
 import 'package:food_app/src/scoped-model/main_model.dart';
 import 'package:food_app/src/widgets/home_top_info.dart';
@@ -75,16 +76,21 @@ class _HomePageState extends State<HomePage>{
   }
 
   Widget _buildFoodItems(Food food){
-    return Container(
-      margin: EdgeInsets.only(bottom: 20.0),
-      child: BoughtFoods(
-        id: food.id,
-        name: food.name,
-        imagePath: food.imagePath,
-        catagory: food.category,
-        discount: food.discount,
-        price: food.price,
-        rating: food.ratings,
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => FoodDetailsPage(food: food,)));
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 20.0),
+        child: BoughtFoods(
+          id: food.id,
+          name: food.name,
+          imagePath: food.imagePath,
+          catagory: food.category,
+          discount: food.discount,
+          price: food.price,
+          rating: food.ratings,
+        ),
       ),
     );
   }
