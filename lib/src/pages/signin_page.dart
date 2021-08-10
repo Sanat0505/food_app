@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/src/models/Methods.dart';
 import 'package:food_app/src/pages/signup_page.dart';
+import 'package:food_app/src/scoped-model/main_model.dart';
+import 'package:food_app/src/screens/main_screen.dart';
 import 'package:food_app/src/widgets/button.dart';
 
 class SignInPage extends StatefulWidget{
@@ -10,9 +13,15 @@ class SignInPage extends StatefulWidget{
 class _SignInPageState extends State<SignInPage>{
 
   bool _toggelVisibility = true;
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  bool isLoading = false;
+
+  final MainModel mainModel = MainModel();
 
   Widget _buildEmailTextField(){
     return TextFormField(
+      controller: _email,
       decoration: InputDecoration(
         hintText: "Enter Email or Username",
         hintStyle: TextStyle(
@@ -26,6 +35,7 @@ class _SignInPageState extends State<SignInPage>{
 
   Widget _buildPasswordField(){
     return TextFormField(
+      controller: _password,
       decoration: InputDecoration(
           hintText: "Password",
           hintStyle: TextStyle(
@@ -48,10 +58,19 @@ class _SignInPageState extends State<SignInPage>{
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
 
       resizeToAvoidBottomInset: false,
-        body: Padding(
+        body: isLoading
+            ? Center(
+                child: Container(
+                height: size.height / 20,
+                width: size.height / 20,
+                child: CircularProgressIndicator(),
+          ),
+        )
+            :Padding(
         padding: EdgeInsets.symmetric(horizontal:10.0),
         child: Column(
           mainAxisAlignment:  MainAxisAlignment.center,
@@ -93,7 +112,33 @@ class _SignInPageState extends State<SignInPage>{
               ),
             ),
             SizedBox(height: 30.0,),
-            Button(btnText: "Sign In"),
+            GestureDetector(
+              onTap: (){
+                if(_email.text.isNotEmpty && _password.text.isNotEmpty){
+                  setState(() {
+                    isLoading = true;
+                  });
+                  logIn(_email.text, _password.text)
+                      .then((user){
+                        if(user != null){
+                          setState(() {
+                            isLoading = false;
+                          });
+                          print("Login Successfull..");
+                          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => MainScreen(model: mainModel,)));
+                        }else{
+                          print("Login Faield..");
+                          setState(() {
+                            isLoading = false;
+                          });
+                        }
+                  });
+                }else{
+                  print("Please Enter the field..");
+                }
+              },
+                child: Button(btnText: "Sign In")
+            ), //TODO Geasture detectore for navigate to main page
             Divider(height: 20.0,color: Colors.black,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
