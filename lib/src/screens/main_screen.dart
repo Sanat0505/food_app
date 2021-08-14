@@ -37,7 +37,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
 
     //widget.foodModel.fetchFood();
     widget.model.fetchFood();
